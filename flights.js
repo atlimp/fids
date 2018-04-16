@@ -15,24 +15,24 @@ const router = express.Router();
 
 async function arrivalRoute(req, res) {
   const arrivals = await getArrivals();
-  res.status(200).json(arrivals);
+  res.status(200).render('table.pug', { rows: arrivals, title: 'Arrivals' });
 }
 
 async function arrivalAirlineRoute(req, res) {
   const { airline } = req.params;
   const arrivals = await getArrivals(airline);
-  res.status(200).json(arrivals);
+  res.status(200).render('table.pug', { rows: arrivals, title: 'Arrivals' });
 }
 
 async function departureRoute(req, res) {
-  const arrivals = await getArrivals();
-  res.status(200).json(arrivals);
+  const departures = await getDepartures();
+  res.status(200).render('table.pug', { rows: departures, title: 'Departures' });
 }
 
 async function departureAirlineRoute(req, res) {
   const { airline } = req.params;
-  const arrivals = await getArrivals(airline);
-  res.status(200).json(arrivals);
+  const departures = await getDepartures(airline);
+  res.status(200).render('table.pug', { rows: departures, title: 'Departures' });
 }
 
 async function airlineRoute(req, res) {

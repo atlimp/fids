@@ -85,12 +85,50 @@ async function getStats() {
   const stats = [];
 
   for (let i = 0; i < airlines.length; i++) {
+    const today = new Date();
+    const tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+
     const arrivals = await getArrivals(airlines[i]);
     const departures = await getDepartures(airlines[i]);
+
+    const todayArrivals = arrivals.filter(el => {
+      const date = new Date(el.scheduled);
+      return today.getFullYear() === date.getFullYear() &&
+        today.getMonth() === date.getMonth() &&
+        today.getDate() === date.getDate();
+    });
+
+    const tomorrowArrivals = arrivals.filter(el => {
+      const date = new Date(el.scheduled);
+      return tomorrow.getFullYear() === date.getFullYear() &&
+        tomorrow.getMonth() === date.getMonth() &&
+        tomorrow.getDate() === date.getDate();
+    });
+
+    const todayDepartures = departures.filter(el => {
+      const date = new Date(el.scheduled);
+      return today.getFullYear() === date.getFullYear() &&
+        today.getMonth() === date.getMonth() &&
+        today.getDate() === date.getDate();
+    });
+
+    const tomorrowDepartures = departures.filter(el => {
+      const date = new Date(el.scheduled);
+      return tomorrow.getFullYear() === date.getFullYear() &&
+        tomorrow.getMonth() === date.getMonth() &&
+        tomorrow.getDate() === date.getDate();
+    });
+
     stats.push({
       airline: airlines[i],
-      arrivals: arrivals.length,
-      departures: departures.length,
+      today: {
+        arrivals: todayArrivals.length,
+        departures: todayDepartures.length,
+      },
+      tomorrow: {
+        arrivals: tomorrowArrivals.length,
+        departures: tomorrowDepartures.length,
+      },
     });
   }
 

@@ -1,17 +1,14 @@
+const path = require('path');
 const express = require('express');
 const flights = require('./flights');
 
 const app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-  res.status(200).json({
-    arrivals: '/arrivals',
-    departures: '/departures',
-    byAirline: '/{arrivals, departures}/:airline',
-    airlines: '/airlines',
-    stats: '/stats',
-  });
+  res.status(200).render('index.pug', { title: 'fids' });
 });
 
 app.use('/', flights);
@@ -21,6 +18,7 @@ function notFoundHandler(req, res, next) {
 }
 
 function errorHandler(err, res, res, next) {
+  console.error(err);
   return res.status(500).json({ error: '500-Internal Server Error'});
 }
 
