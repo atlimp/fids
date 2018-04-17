@@ -3,10 +3,7 @@ extends layout
 block content
   ul
     li
-      a(href='/arrivals') Arrivals
-    li
-      a(href='/departures') Departures
-    li
-      a(href='/airlines') Airlines
-    li
-      a(href='/stats') Stats
+      a(href='all') All
+    each airline in airlines
+      li
+        a(href=airline.slug)= airline.airline

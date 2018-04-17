@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
+}
+
+.home {
+  width: 100%;
+  background: #888;
+  color: #fff;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+.home-link {
+  text-decoration: none;
+}
+
+ul {
+  background: #ddd
+}
+
+ul li {
+  margin: 5px;
+  font-size: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tbody tr:nth-child(2n) {
+  background: #f2f2f2;
+}
+
+tbody tr:hover {
+  background: #ddd;
+}

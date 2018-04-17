@@ -7,19 +7,17 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
-  res.status(200).render('index.pug', { title: 'fids' });
-});
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', flights);
 
 function notFoundHandler(req, res, next) {
-  return res.status(404).json({ error: '404-Not Found' });
+  return res.status(404).render('error.pug', { error: '404 Not Found' });
 }
 
 function errorHandler(err, res, res, next) {
   console.error(err);
-  return res.status(500).json({ error: '500-Internal Server Error'});
+  return res.status(500).render('error.pug', { error: '500 Internal Server Error'});
 }
 
 app.use(notFoundHandler);

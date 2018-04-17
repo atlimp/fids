@@ -1,8 +1,8 @@
 const express = require('express');
 
 const {
-  getDepartures,
   getArrivals,
+  getDepartures,
   getAirlines,
   getStats,
 } = require('./fetch');
@@ -13,43 +13,34 @@ function catchErrors(fn) {
 
 const router = express.Router();
 
-async function arrivalRoute(req, res) {
-  const arrivals = await getArrivals();
-  res.status(200).render('table.pug', { rows: arrivals, title: 'Arrivals' });
-}
-
-async function arrivalAirlineRoute(req, res) {
-  const { airline } = req.params;
-  const arrivals = await getArrivals(airline);
-  res.status(200).render('table.pug', { rows: arrivals, title: 'Arrivals' });
-}
-
-async function departureRoute(req, res) {
-  const departures = await getDepartures();
-  res.status(200).render('table.pug', { rows: departures, title: 'Departures' });
-}
-
-async function departureAirlineRoute(req, res) {
-  const { airline } = req.params;
-  const departures = await getDepartures(airline);
-  res.status(200).render('table.pug', { rows: departures, title: 'Departures' });
-}
-
-async function airlineRoute(req, res) {
+async function getRoot(req, res) {
   const airlines = await getAirlines();
-  res.status(200).json(airlines);
+  res.render('index.pug', { airlines });
 }
 
-async function statsRoute(req, res) {
-  const stats = await getStats();
-  res.status(200).json(stats);
+async function getAll(req, res) {
+  const arrivals = await getArrivals();
+  const departures = await getDepartures();
+
+  const keys = Object.keys(arrivals);
+
+  res.render('table', { keys, arrivals, departures });
 }
 
-router.get('/arrivals', catchErrors(arrivalRoute));
-router.get('/arrivals/:airline', catchErrors(arrivalAirlineRoute));
-router.get('/departures', catchErrors(departureRoute));
-router.get('/departures/:airline', catchErrors(departureAirlineRoute));
-router.get('/airlines', catchErrors(airlineRoute));
-router.get('/stats', catchErrors(statsRoute));
+async function byAirline(req, res, next) {
+  const { slug } = req.params;
+
+  const arrivals = await getArrivals(slug);
+  const departures = await getDepartures(slug);
+  const stats = await getStats(slug);
+
+  const keys = Object.keys(arrivals);
+
+  res.render('table', { keys, arrivals, departures, stats });
+}
+
+router.get('/', catchErrors(getRoot));
+router.get('/all', catchErrors(getAll));
+router.get('/:slug', catchErrors(byAirline));
 
 module.exports = router;
