@@ -36,7 +36,9 @@ async function byAirline(req, res, next) {
 
   const keys = Object.keys(arrivals);
 
-  res.render('table', { keys, arrivals, departures, stats });
+  if (keys.length === 0) return next();
+
+  return res.render('table', { keys, arrivals, departures, stats });
 }
 
 router.get('/', catchErrors(getRoot));
