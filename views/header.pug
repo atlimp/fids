@@ -1,0 +1,8 @@
+extends layout
+
+block header
+  div(class='dropdown dropdown-header') Airlines
+    div(class='dropdown-content')
+      a(href='/') All
+      each airline in airlines
+        a(href=airline.slug)= airline.airline

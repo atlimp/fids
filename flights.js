@@ -13,18 +13,14 @@ function catchErrors(fn) {
 
 const router = express.Router();
 
-async function getRoot(req, res) {
-  const airlines = await getAirlines();
-  res.render('index.pug', { airlines });
-}
-
 async function getAll(req, res) {
   const arrivals = await getArrivals();
   const departures = await getDepartures();
+  const airlines = await getAirlines();
 
   const keys = Object.keys(arrivals);
 
-  res.render('table', { keys, arrivals, departures });
+  res.render('table', { keys, arrivals, departures, airlines });
 }
 
 async function byAirline(req, res, next) {
@@ -33,16 +29,14 @@ async function byAirline(req, res, next) {
   const arrivals = await getArrivals(slug);
   const departures = await getDepartures(slug);
   const stats = await getStats(slug);
+  const airlines = await getAirlines();
 
   const keys = Object.keys(arrivals);
 
-  if (keys.length === 0) return next();
-
-  return res.render('table', { keys, arrivals, departures, stats });
+  return res.render('table', { keys, arrivals, departures, stats, airlines });
 }
 
-router.get('/', catchErrors(getRoot));
-router.get('/all', catchErrors(getAll));
+router.get('/', catchErrors(getAll));
 router.get('/:slug', catchErrors(byAirline));
 
 module.exports = router;

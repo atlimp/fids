@@ -7,28 +7,7 @@ main {
   max-width: 1200px;
   margin: auto;
   width: 100%;
-}
-
-.home {
-  width: 100%;
-  background: #888;
-  color: #fff;
-  text-align: center;
-  position: sticky;
-  top: 0;
-}
-
-.home-link {
-  text-decoration: none;
-}
-
-ul {
-  background: #ddd
-}
-
-ul li {
-  margin: 5px;
-  font-size: 1.5rem;
+  background: #eee;
 }
 
 table {
@@ -47,4 +26,51 @@ tbody tr:nth-child(2n) {
 
 tbody tr:hover {
   background: #ddd;
+}
+
+.dropdown {
+  display: inline-block;
+  position: sticky;
+  top: 0;
+}
+
+.dropdown-header {
+  background: #333;
+  color: #fff;
+  display: block;
+  font-size: 2rem;
+}
+
+.dropdown-content {
+  font-size: 1rem;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-size: 1rem;
+
+}
+
+.dropdown-content a:hover {
+  background: #aaa;
+}
+
+@media(max-width: 600px) {
+  .dropdown-content {
+    width: 100%;
+  }
 }
