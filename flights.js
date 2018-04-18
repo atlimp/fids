@@ -34,8 +34,7 @@ async function byAirline(req, res, next) {
 
   const keys = Object.keys(arrivals);
 
-  const [{ airline: title }] = airlines.filter(el => el.slug === slug);
-  console.log(title);
+  const [{ airline: title = slug } = {}] = airlines.filter(el => el.slug === slug);
 
   return res.render('table', { keys, arrivals, departures, stats, airlines, title });
 }
