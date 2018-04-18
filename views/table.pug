@@ -1,61 +1,64 @@
 extends header
 
 block content
-  each key in keys
-    h1= key
-    if stats
-      h2= 'Arrivals - ' + stats[key].arrivals
-    else
-      h2 Arrivals
-    table
-      thead
-        tr
-          th Flight Number
-          th Airline
-          th Origin
-          th Scheduled
-          th Estimated
-          th Gate
-          th Stand
-          th Status
-          th Aircraft
-      tbody
-        each flight in arrivals[key]
-          tr
-            td= flight.flight_no
-            td= flight.airline
-            td= flight.origin
-            td= flight.scheduled
-            td= flight.estimated
-            td= flight.gate
-            td= flight.stand
-            td= flight.status
-            td= flight.aircraft
-    if stats
-      h2= 'Departures - ' + stats[key].departures
-    else
-      h2 Departures
-    table
-      thead
-        tr
-          th Flight Number
-          th Airline
-          th Destination
-          th Scheduled
-          th Estimated
-          th Gate
-          th Stand
-          th Status
-          th Aircraft
-        tbody
-          each flight in departures[key]
+  div(class='row')
+    each key in keys
+      div(class='col-12')
+        h1= key
+        if stats
+          h2= 'Arrivals - ' + stats[key].arrivals
+        else
+          h2 Arrivals
+        table
+          thead
             tr
-              td= flight.flight_no
-              td= flight.airline
-              td= flight.destination
-              td= flight.scheduled
-              td= flight.estimated
-              td= flight.gate
-              td= flight.stand
-              td= flight.status
-              td= flight.aircraft
+              th Flight Number
+              th Airline
+              th Origin
+              th Scheduled
+              th Estimated
+              th Gate
+              th Stand
+              th Status
+              th Aircraft
+          tbody
+            each flight in arrivals[key]
+              tr
+                td= flight.flight_no
+                td= flight.airline
+                td= flight.origin
+                td= flight.scheduled
+                td= flight.estimated
+                td= flight.gate
+                td= flight.stand
+                td= flight.status
+                td= flight.aircraft
+      div(class='col-12')  
+        if stats
+          h2= 'Departures - ' + stats[key].departures
+        else
+          h2 Departures
+        table
+          thead
+            tr
+              th Flight Number
+              th Airline
+              th Destination
+              th Scheduled
+              th Estimated
+              th Gate
+              th Stand
+              th Status
+              th Aircraft
+          tbody
+            each flight in departures[key]
+              tr
+                td= flight.flight_no
+                td= flight.airline
+                td= flight.destination
+                td= flight.scheduled
+                td= flight.estimated
+                td= flight.gate
+                td= flight.stand
+                td= flight.status
+                td= flight.aircraft

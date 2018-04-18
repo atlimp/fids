@@ -16,11 +16,12 @@ const router = express.Router();
 async function getAll(req, res) {
   const arrivals = await getArrivals();
   const departures = await getDepartures();
+  const stats = await getStats();
   const airlines = await getAirlines();
 
   const keys = Object.keys(arrivals);
 
-  res.render('table', { keys, arrivals, departures, airlines });
+  res.render('table', { keys, arrivals, departures, airlines, stats });
 }
 
 async function byAirline(req, res, next) {

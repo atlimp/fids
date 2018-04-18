@@ -9,6 +9,7 @@
   "author": "Atli Marcher",
   "license": "ISC",
   "dependencies": {
+    "browser-sync": "^2.23.6",
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",
     "pug": "^2.0.3"

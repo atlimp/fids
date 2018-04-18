@@ -114,7 +114,9 @@ async function getAirlines() {
     return i === self.findIndex(s =>
       s.airline === el.airline && s.slug === el.slug
     );
-  });
+  }).sort((a, b) => a.airline.localeCompare(b.airline));
+
+
 
   return airlines;
 }
