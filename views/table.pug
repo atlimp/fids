@@ -5,11 +5,8 @@ block content
     each key in keys
       div(class='col-12')
         h1= key
-        if stats
-          h2= 'Arrivals - ' + stats[key].arrivals
-        else
-          h2 Arrivals
         table
+          h2(class='header')= 'Arrivals - ' + stats[key].arrivals
           thead
             tr
               th Flight Number
@@ -34,11 +31,8 @@ block content
                 td= flight.status
                 td= flight.aircraft
       div(class='col-12')  
-        if stats
-          h2= 'Departures - ' + stats[key].departures
-        else
-          h2 Departures
         table
+          h2(class='header')= 'Departures - ' + stats[key].departures
           thead
             tr
               th Flight Number
