@@ -12,12 +12,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', flights);
 
 function notFoundHandler(req, res, next) {
-  return res.status(404).render('error.pug', { error: '404 Not Found' });
+  return res.status(404).render('error.pug', { error: '404 Not Found', title: 'Error' });
 }
 
 function errorHandler(err, res, res, next) {
   console.error(err);
-  return res.status(500).render('error.pug', { error: '500 Internal Server Error'});
+  return res.status(500).render('error.pug', { error: '500 Internal Server Error', title: 'Error' });
 }
 
 app.use(notFoundHandler);

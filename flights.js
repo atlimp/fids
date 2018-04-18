@@ -21,7 +21,7 @@ async function getAll(req, res) {
 
   const keys = Object.keys(arrivals);
 
-  res.render('table', { keys, arrivals, departures, airlines, stats });
+  res.render('table', { keys, arrivals, departures, airlines, stats, title: 'All' });
 }
 
 async function byAirline(req, res, next) {
@@ -34,7 +34,10 @@ async function byAirline(req, res, next) {
 
   const keys = Object.keys(arrivals);
 
-  return res.render('table', { keys, arrivals, departures, stats, airlines });
+  const [{ airline: title }] = airlines.filter(el => el.slug === slug);
+  console.log(title);
+
+  return res.render('table', { keys, arrivals, departures, stats, airlines, title });
 }
 
 router.get('/', catchErrors(getAll));
