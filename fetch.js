@@ -116,8 +116,6 @@ async function getAirlines() {
     );
   }).sort((a, b) => a.airline.localeCompare(b.airline));
 
-
-
   return airlines;
 }
 
