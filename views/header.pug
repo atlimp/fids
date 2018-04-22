@@ -3,7 +3,7 @@ extends layout
 block header
   div(class='row')
     div(class='col-12')
-      div(class='dropdown')= title
+      div(class='dropdown ' + slug)= title
         div(class='dropdown-content')
           a(href='/') All
           each airline in airlines

@@ -136,3 +136,39 @@ tbody tr:hover {
   td:nth-of-type(8):before { content: "Status"; }
   td:nth-of-type(9):before { content: "Aircraft"; }
 }
+
+.wow_air {
+  background: #731c89;
+}
+
+.wizz_air {
+  background: #e25abc;
+}
+
+.easy_jet {
+  background: #ff6404;
+}
+
+.norwegian_air {
+  background: #ff0505;
+}
+
+.delta_air_lines {
+  background: #1505ff;
+}
+
+.british_airlines, .icelandair, .atlanta_airways, .air_iceland_connect, .sas, .travel_serivce {
+  background: #1505ff;
+}
+
+.primera_air {
+  background: #ffee05;
+}
+
+.vueling_airlines {
+  background: #ffd505;
+}
+
+.transavia_airlines {
+  background: #8bed90;
+}

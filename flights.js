@@ -36,7 +36,7 @@ async function byAirline(req, res, next) {
 
   const [{ airline: title = slug } = {}] = airlines.filter(el => el.slug === slug);
 
-  return res.render('table', { keys, arrivals, departures, stats, airlines, title });
+  return res.render('table', { keys, arrivals, departures, stats, airlines, title, slug });
 }
 
 router.get('/', catchErrors(getAll));
