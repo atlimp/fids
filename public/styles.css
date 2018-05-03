@@ -50,10 +50,9 @@ tbody tr:hover {
   display: none;
 }
 
-.minimized:before {
-  content: '-';
+.minimized {
+  font-style: italic;
 }
-
 .dropdown {
   width: 100%;
   display: flex;
