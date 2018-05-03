@@ -50,6 +50,10 @@ tbody tr:hover {
   display: none;
 }
 
+.minimized:before {
+  content: '-';
+}
+
 .dropdown {
   width: 100%;
   display: flex;
